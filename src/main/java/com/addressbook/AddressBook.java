@@ -8,4 +8,20 @@ public class AddressBook {
             this.contact = contact;
             System.out.println("Contact added successfully!");
         }
+        public void editContact(String name, String address, String city,
+                                String state, String zip,
+                                String phoneNumber, String email) {
+
+            if (contact != null && contact.getFirstName().equalsIgnoreCase(name)) {
+                contact.setAddress(address);
+                contact.setCity(city);
+                contact.setState(state);
+                contact.setZip(zip);
+                contact.setPhoneNumber(phoneNumber);
+                contact.setEmail(email);
+                System.out.println("Contact updated successfully!");
+            } else {
+                System.out.println("Contact not found!");
+            }
+        }
 }
