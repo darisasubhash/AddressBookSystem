@@ -7,6 +7,7 @@ public class AddressBookMain {
         public static void main(String[] args) {
             Scanner scanner = new Scanner(System.in);
             AddressBook addressBook = new AddressBook();
+            //UC-2 Add contact
             System.out.print("Enter First Name: ");
             String firstName = scanner.nextLine();
             System.out.print("Enter Last Name: ");
@@ -26,6 +27,7 @@ public class AddressBookMain {
             Contact contact = new Contact(firstName,lastName,address,city,state,zip,phoneNumber,email);
             addressBook.addContact(contact);
 
+            //UC-3 edit contact
             System.out.print("\nEnter First Name to edit contact: ");
             String editName = scanner.nextLine();
             System.out.print("Enter New Address: ");
@@ -41,5 +43,10 @@ public class AddressBookMain {
             System.out.print("Enter New Email: ");
             email = scanner.nextLine();
             addressBook.editContact(editName, address, city, state, zip, phoneNumber, email);
+
+            //UC-4 delete contact
+            System.out.print("\nEnter First Name to delete contact: ");
+            String deleteName = scanner.nextLine();
+            addressBook.deleteContact(deleteName);
         }
 }
