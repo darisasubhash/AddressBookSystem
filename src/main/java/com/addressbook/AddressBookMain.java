@@ -7,6 +7,7 @@ public class AddressBookMain {
         public static void main(String[] args) {
             Scanner scanner = new Scanner(System.in);
             AddressBook addressBook = new AddressBook();
+            AddressBookSys bookSys=new AddressBookSys();
 
             String firstName, lastName, address, city, state, zip, phoneNumber, email;
             String choice;
@@ -76,6 +77,13 @@ public class AddressBookMain {
                 System.out.print("Do you want to add another contact? (yes/no): ");
                 choice = scanner.nextLine();
             } while (choice.equalsIgnoreCase("yes"));
+
+            //uc-6 Add new Address book
+            System.out.print("Enter Address Book Name: ");
+            String bookName = scanner.nextLine();
+
+            bookSys.addAddressBook(bookName);
+            AddressBook addressOfBook = bookSys.getAddressBook(bookName);
 
         }
 }
