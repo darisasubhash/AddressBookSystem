@@ -1,5 +1,7 @@
 package com.addressbook;
 
+import java.util.Objects;
+
 public class Contact {
     private String firstName;
     private String lastName;
@@ -83,6 +85,26 @@ public class Contact {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+    //UC-7 overriding the equals method
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (!(obj instanceof Contact)) return false;
+        Contact other = (Contact) obj;
+        return firstName.equalsIgnoreCase(other.firstName)
+                && lastName.equalsIgnoreCase(other.lastName);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(firstName.toLowerCase(), lastName.toLowerCase());
+    }
+
+    @Override
+    public String toString() {
+        return firstName + " " + lastName + ", " + address + ", " + city + ", " +
+                state + " - " + zip + ", Phone: " + phoneNumber + ", Email: " + email;
     }
 }
 

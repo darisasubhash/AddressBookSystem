@@ -7,8 +7,13 @@ public class AddressBook {
         private List<Contact> contactList = new ArrayList<>();
 
         public void addContact(Contact contact) {
-            contactList.add(contact);
-            System.out.println("Contact added successfully ");
+            if(contactList.contains(contact)){
+                System.out.println("Person already present ");
+            }
+            else {
+                contactList.add(contact);
+                System.out.println("Contact added successfully ");
+            }
         }
         public void editContact(String name, String address, String city,
                                 String state, String zip,
