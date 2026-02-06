@@ -42,4 +42,8 @@ public class AddressBook {
             }
             System.out.println("Contact not found ");
         }
+
+    public List<Contact> getContactList() {
+        return contactList;
+    }
 }

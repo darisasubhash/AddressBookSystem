@@ -1,5 +1,6 @@
 package com.addressbook;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class AddressBookMain {
@@ -11,6 +12,12 @@ public class AddressBookMain {
 
             String firstName, lastName, address, city, state, zip, phoneNumber, email;
             String choice;
+            //uc-6 Add new Address book
+            System.out.print("Enter Address Book Name : ");
+            String bookName = scanner.nextLine();
+
+            bookSys.addAddressBook(bookName);
+            AddressBook addressOfBook = bookSys.getAddressBook(bookName);
 
             //UC-2 Add contact
             System.out.println("Add Single Contact ");
@@ -78,12 +85,18 @@ public class AddressBookMain {
                 choice = scanner.nextLine();
             } while (choice.equalsIgnoreCase("yes"));
 
-            //uc-6 Add new Address book
-            System.out.print("Enter Address Book Name: ");
-            String bookName = scanner.nextLine();
+            //UC-8 Search by City or State
+            System.out.println("Enter the name of the City : ");
+            city= scanner.nextLine();
+            List<Contact> cityResult=bookSys.searchPersonByCity(city);
+            System.out.println("Persons found in city "+city+" : ");
+            cityResult.forEach(System.out::println);
 
-            bookSys.addAddressBook(bookName);
-            AddressBook addressOfBook = bookSys.getAddressBook(bookName);
+            System.out.println("Enter the name of the State : ");
+            state=scanner.nextLine();
+            List<Contact> resultState=bookSys.searchPersonByState(state);
+            System.out.println("Persons found in state "+state+" : ");
+            resultState.forEach(System.out::println);
 
         }
 }

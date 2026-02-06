@@ -1,7 +1,9 @@
 package com.addressbook;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class AddressBookSys {
 
@@ -30,5 +32,20 @@ public class AddressBookSys {
                 System.out.println("  " + name);
             }
         }
+    }
+    //UC-8 Search by City or State
+    public List<Contact> searchPersonByCity(String city) {
+
+        return addressBookMap.values().stream()
+                .flatMap(addressBook -> addressBook.getContactList().stream())
+                .filter(contact -> contact.getCity().trim().equalsIgnoreCase(city.trim()))
+                .collect(Collectors.toList());
+    }
+    public List<Contact> searchPersonByState(String state) {
+
+        return addressBookMap.values().stream()
+                .flatMap(addressBook -> addressBook.getContactList().stream())
+                .filter(contact -> contact.getState().trim().equalsIgnoreCase(state.trim()))
+                .collect(Collectors.toList());
     }
 }
