@@ -9,6 +9,7 @@ public class AddressBookSys {
 
     private Map<String, AddressBook> addressBookMap = new HashMap<>();
 
+
     // UC-6 Add new Address Book
     public void addAddressBook(String name) {
         if (addressBookMap.containsKey(name)) {
@@ -47,5 +48,16 @@ public class AddressBookSys {
                 .flatMap(addressBook -> addressBook.getContactList().stream())
                 .filter(contact -> contact.getState().trim().equalsIgnoreCase(state.trim()))
                 .collect(Collectors.toList());
+    }
+    //UC-9 storing as dictionary
+    public Map<String,List<Contact>> viewPersonByCity(){
+        return addressBookMap.values().stream()
+                .flatMap(addressBook -> addressBook.getContactList().stream())
+                .collect(Collectors.groupingBy(Contact::getCity));
+    }
+    public Map<String,List<Contact>> viewPersonByState(){
+        return addressBookMap.values().stream()
+                .flatMap(addressBook -> addressBook.getContactList().stream())
+                .collect(Collectors.groupingBy(Contact::getCity));
     }
 }
