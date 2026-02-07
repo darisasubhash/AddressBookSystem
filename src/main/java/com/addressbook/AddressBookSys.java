@@ -60,4 +60,16 @@ public class AddressBookSys {
                 .flatMap(addressBook -> addressBook.getContactList().stream())
                 .collect(Collectors.groupingBy(Contact::getCity));
     }
+
+    //UC-10 count by city or state
+    public Map<String, Long> countPersonsByCity() {
+        return addressBookMap.values().stream()
+                .flatMap(addressBook -> addressBook.getContactList().stream())
+                .collect(Collectors.groupingBy(Contact::getCity,Collectors.counting()));
+    }
+    public Map<String, Long> countPersonsByState() {
+        return addressBookMap.values().stream()
+                .flatMap(book -> book.getContactList().stream())
+                .collect(Collectors.groupingBy(Contact::getState,Collectors.counting()));
+    }
 }

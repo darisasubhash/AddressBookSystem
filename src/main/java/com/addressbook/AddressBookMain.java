@@ -28,6 +28,8 @@ public class AddressBookMain {
                 case 6 -> searchByCityOrState();
                 case 7 -> viewByCity();
                 case 8 -> viewByState();
+                case 9 -> countByCity();
+                case 10 -> countByState();
                 case 0 -> System.out.println("Exiting Address Book Program...");
                 default -> System.out.println("Invalid choice!");
             }
@@ -44,6 +46,8 @@ public class AddressBookMain {
         System.out.println("6. Search Person by City or State ");
         System.out.println("7. View Persons by City ");
         System.out.println("8. View Persons by State ");
+        System.out.println("9. Count Persons by City ");
+        System.out.println("10. Count Persons by State ");
         System.out.println("0. Exit");
         System.out.print("Enter your choice: ");
     }
@@ -162,4 +166,18 @@ public class AddressBookMain {
         String email = scanner.nextLine();
         return new Contact(firstName, lastName, address, city, state, zip, phone, email);
     }
+
+    //UC-10 count by city
+    private static void countByCity() {
+        Map<String, Long> cityCountMap = bookSys.countPersonsByCity();
+        System.out.println("\nPerson Count by City : ");
+        cityCountMap.forEach((city, count) -> System.out.println(city + " " + count));
+    }
+    //count by state
+    private static void countByState(){
+        Map<String,Long> stateCountMap = bookSys.countPersonsByState();
+        System.out.println("\nPerson Count by State : ");
+        stateCountMap.forEach((state,count)->System.out.println(state +" "+ count));
+    }
+
 }
