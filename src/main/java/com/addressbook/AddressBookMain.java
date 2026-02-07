@@ -31,6 +31,9 @@ public class AddressBookMain {
                 case 9 -> countByCity();
                 case 10 -> countByState();
                 case 11 -> sortContactsByName();
+                case 12 -> sortContactsByCity();
+                case 13 -> sortContactsByState();
+                case 14 -> sortContactsByZip();
                 case 0 -> System.out.println("Exiting Address Book Program...");
                 default -> System.out.println("Invalid choice!");
             }
@@ -50,6 +53,9 @@ public class AddressBookMain {
         System.out.println("9. Count Persons by City ");
         System.out.println("10. Count Persons by State ");
         System.out.println("11. Sort Contacts by Name ");
+        System.out.println("12. Sort Contacts by City )");
+        System.out.println("13. Sort Contacts by State ");
+        System.out.println("14. Sort Contacts by Zip ");
         System.out.println("0. Exit");
         System.out.print("Enter your choice: ");
     }
@@ -186,9 +192,29 @@ public class AddressBookMain {
     private static void sortContactsByName() {
         AddressBook addressBook = getAddressBook();
         if (addressBook == null) return;
-        System.out.println("\nContacts Sorted Alphabetically by Name:");
+        System.out.println("\nContacts Sorted Alphabetically by Name : ");
         addressBook.sortContactsByName().forEach(System.out::println);
     }
+    //UC-12 sort by city,state,zip
+    private static void sortContactsByCity() {
+        AddressBook addressBook = getAddressBook();
+        if (addressBook == null) return;
+        System.out.println("\nContacts Sorted by City : ");
+        addressBook.sortContactsByCity().forEach(System.out::println);
+    }
+    private static void sortContactsByState(){
+        AddressBook addressBook =getAddressBook();
+        if (addressBook == null) return;
+        System.out.println("\nContacts Sorted by State : ");
+        addressBook.sortContactsByState().forEach(System.out::println);
+    }
+    private static void sortContactsByZip(){
+        AddressBook addressBook=getAddressBook();
+        if (addressBook == null) return;
+        System.out.println("\nContact Sorted by Zip");
+        addressBook.sortContactsByZip().forEach(System.out::println);
+    }
+
 
 
 }

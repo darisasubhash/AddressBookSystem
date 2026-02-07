@@ -54,5 +54,20 @@ public class AddressBook {
                 .sorted(Comparator.comparing(Contact::getFirstName,String.CASE_INSENSITIVE_ORDER))
                 .collect(Collectors.toList());
     }
-
+    //UC-12 Sort by city,state,zip
+    public List<Contact> sortContactsByCity() {
+        return contactList.stream()
+                .sorted(Comparator.comparing(Contact::getCity,String.CASE_INSENSITIVE_ORDER))
+                .collect(Collectors.toList());
+    }
+    public List<Contact> sortContactsByState() {
+        return contactList.stream()
+                .sorted(Comparator.comparing(Contact::getState,String.CASE_INSENSITIVE_ORDER))
+                .collect(Collectors.toList());
+    }
+    public List<Contact> sortContactsByZip() {
+        return contactList.stream()
+                .sorted(Comparator.comparing(Contact::getZip))
+                .collect(Collectors.toList());
+    }
 }
