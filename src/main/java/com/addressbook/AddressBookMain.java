@@ -30,6 +30,7 @@ public class AddressBookMain {
                 case 8 -> viewByState();
                 case 9 -> countByCity();
                 case 10 -> countByState();
+                case 11 -> sortContactsByName();
                 case 0 -> System.out.println("Exiting Address Book Program...");
                 default -> System.out.println("Invalid choice!");
             }
@@ -48,6 +49,7 @@ public class AddressBookMain {
         System.out.println("8. View Persons by State ");
         System.out.println("9. Count Persons by City ");
         System.out.println("10. Count Persons by State ");
+        System.out.println("11. Sort Contacts by Name ");
         System.out.println("0. Exit");
         System.out.print("Enter your choice: ");
     }
@@ -179,5 +181,14 @@ public class AddressBookMain {
         System.out.println("\nPerson Count by State : ");
         stateCountMap.forEach((state,count)->System.out.println(state +" "+ count));
     }
+
+    //UC-11 sort alphabetically
+    private static void sortContactsByName() {
+        AddressBook addressBook = getAddressBook();
+        if (addressBook == null) return;
+        System.out.println("\nContacts Sorted Alphabetically by Name:");
+        addressBook.sortContactsByName().forEach(System.out::println);
+    }
+
 
 }

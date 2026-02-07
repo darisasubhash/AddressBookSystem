@@ -1,7 +1,9 @@
 package com.addressbook;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class AddressBook {
         private List<Contact> contactList = new ArrayList<>();
@@ -46,4 +48,11 @@ public class AddressBook {
     public List<Contact> getContactList() {
         return contactList;
     }
+    // UC-11  Sort  alphabetically
+    public List<Contact> sortContactsByName() {
+        return contactList.stream()
+                .sorted(Comparator.comparing(Contact::getFirstName,String.CASE_INSENSITIVE_ORDER))
+                .collect(Collectors.toList());
+    }
+
 }
