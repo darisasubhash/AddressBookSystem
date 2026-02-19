@@ -1,5 +1,9 @@
 package com.addressbook;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
@@ -69,5 +73,35 @@ public class AddressBook {
         return contactList.stream()
                 .sorted(Comparator.comparing(Contact::getZip))
                 .collect(Collectors.toList());
+    }
+    //UC-13 read or write using File IO
+    public void writeToFile(String filename){
+            try(BufferedWriter writer=new BufferedWriter(new FileWriter(filename))){
+                for(Contact contact:contactList){
+                    writer.write(contact.getFirstName()+","+contact.getLastName()+","+contact.getAddress()+
+                            ","+contact.getCity()+","+contact.getState()+","+contact.getZip()+
+                            ","+contact.getPhoneNumber()+ ","+contact.getEmail());
+                }
+                System.out.println("AddressBook saved to file successfully..");
+            }
+            catch (Exception e){
+                System.out.println(e.getMessage());
+            }
+    }
+    public void readFromFile(String filename){
+            String line;
+            try(BufferedReader reader=new BufferedReader(new FileReader(filename))){
+                while((line= reader.readLine())!=null){
+                    String[] data=line.split(",");
+                    if(data.length>=4){
+                        Contact contact=new Contact(data[0],data[1],data[2],data[3],data[4],data[5],data[6],data[7]);
+                        contactList.add(contact);
+                    }
+                }
+                System.out.println("AddressBook loaded from file sucessfully..");
+            }
+            catch (Exception e){
+                System.out.println(e.getMessage());
+            }
     }
 }

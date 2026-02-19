@@ -34,6 +34,8 @@ public class AddressBookMain {
                 case 12 -> sortContactsByCity();
                 case 13 -> sortContactsByState();
                 case 14 -> sortContactsByZip();
+                case 15 -> writeToFile();
+                case 16 -> readFromFile();
                 case 0 -> System.out.println("Exiting Address Book Program...");
                 default -> System.out.println("Invalid choice!");
             }
@@ -56,6 +58,8 @@ public class AddressBookMain {
         System.out.println("12. Sort Contacts by City )");
         System.out.println("13. Sort Contacts by State ");
         System.out.println("14. Sort Contacts by Zip ");
+        System.out.println("15. Write Address Book to File ");
+        System.out.println("16. Read Address Book from File ");
         System.out.println("0. Exit");
         System.out.print("Enter your choice: ");
     }
@@ -214,7 +218,19 @@ public class AddressBookMain {
         System.out.println("\nContact Sorted by Zip");
         addressBook.sortContactsByZip().forEach(System.out::println);
     }
-
-
-
+    //UC-13 writing and reading from file
+    private static void writeToFile() {
+        AddressBook addressBook = getAddressBook();
+        if (addressBook == null) return;
+        System.out.print("Enter file name : ");
+        String fileName = scanner.nextLine();
+        addressBook.writeToFile(fileName);
+    }
+    private static void readFromFile() {
+        AddressBook addressBook = getAddressBook();
+        if (addressBook == null) return;
+        System.out.print("Enter file name to read : ");
+        String fileName = scanner.nextLine();
+        addressBook.readFromFile(fileName);
+    }
 }
